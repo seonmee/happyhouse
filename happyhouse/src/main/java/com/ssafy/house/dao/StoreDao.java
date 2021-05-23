@@ -11,6 +11,10 @@ public interface StoreDao {
 	 * output : List<StoreDto>
 	 * */
 	public List<StoreDto> searchByCode(StoreDto storeDto)throws Exception;
+	/* 상권 정보 검색 전체 데이터 수  
+	 * input : StoreDto
+	 * output : int
+	 * */
 	public int getTotalCount(StoreDto storeDto) throws Exception;
 	/* 주변 상권 검색 (카테고리별)
 	 * input : MAP

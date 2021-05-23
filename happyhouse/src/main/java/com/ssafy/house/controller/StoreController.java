@@ -39,11 +39,23 @@ public class StoreController {
 		logger.info("1-------------searchByCode-----------------------------"+new Date());
 		StoreDto store = new StoreDto(sidoCode,gugunCode,dongCode,currentPage,10);
 		List<StoreDto> stores = storeService.searchByCode(store);
-//		PageNavigation pageNavigation = storeService.makePageNavigation(store);
+		
 		if (stores.isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<StoreDto>>(stores, HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "Code(시/군구/동)에 속하는 상점 정보의 총 갯수를 반환한다.)", response = List.class)
+	@RequestMapping(value = {"/storeList/getTotalCount/{currentPage}","/storeList/getTotalCount/{currentPage}/{sidoCode}"
+			,"/storeList/getTotalCount/{currentPage}/{sidoCode}/{gugunCode}"
+			,"/storeList/getTotalCount/{currentPage}/{sidoCode}/{gugunCode}/{dongCode}"},method=RequestMethod.GET)
+	public ResponseEntity<Integer> getTotalCount(@PathVariable int currentPage,@PathVariable(required = false) String sidoCode,@PathVariable(required = false) String gugunCode,@PathVariable(required = false) String dongCode) throws Exception {
+		logger.info("1-------------searchByCode-----------------------------"+new Date());
+		StoreDto store = new StoreDto(sidoCode,gugunCode,dongCode,currentPage,10);
+		int tot = storeService.getTotalCount(store);
+		
+		return new ResponseEntity<Integer>(tot, HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "동네(dongCode)의 카테고리별(category)상점 정보를 반환한다.", response = List.class)

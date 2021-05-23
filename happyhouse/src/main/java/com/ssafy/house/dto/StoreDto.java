@@ -1,8 +1,9 @@
 package com.ssafy.house.dto;
+
 /**
  *  created by 현선미 
  *  상점 */
-public class StoreDto {
+public class StoreDto  {
 	private int storeId;                // 상가 업소 번호
 	private String storeName;           // 상호명
 	private String branchName;          // 지점

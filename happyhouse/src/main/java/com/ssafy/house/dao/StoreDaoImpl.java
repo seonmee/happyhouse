@@ -27,6 +27,11 @@ public class StoreDaoImpl implements StoreDao {
 	public List<StoreDto> searchByCode(StoreDto storeDto) throws Exception {
 		return sqlSession.selectList(namespace + "searchByCode", storeDto);
 	}
+
+	/* 상권 정보 검색 전체 데이터 수  
+	 * input : StoreDto
+	 * output : int
+	 * */
 	@Override
 	public int getTotalCount(StoreDto storeDto) throws Exception {
 		return sqlSession.selectOne(namespace + "getTotalCount", storeDto);

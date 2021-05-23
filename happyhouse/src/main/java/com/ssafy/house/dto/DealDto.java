@@ -1,5 +1,6 @@
 package com.ssafy.house.dto;
-/* 거래내역 */
+/* created by 현선미 
+ * 거래내역 */
 public class DealDto {
 	/* 공통 */
 	private String name;            // 주택
@@ -12,22 +13,39 @@ public class DealDto {
 	private String dong;            // 법정동 명 
 	private String gunguCode;       // 군구 코드 
 	private String area;            // 면적 
-	private String lat;             //          
-	private String lng;             // 
+	
 	/* 전월세 */
 	private String deposit;         // 보증금 
 	private String rentMoney;       // 월세
+	private int type;            // 전월세 구분 
+	
 	/* 매매 */
 	private String dealAmount;      // 매매
+	
+	/* 페이징 */
+	private int curPage;                // 현재 페이지 
+	private int spp;                    // 페이지당 글 수 
+	private int start;                  // 시작 인덱스 
 	
 	public DealDto() {
 		super();
 	}
+	
+	public DealDto(int type, String gunguCode, String dong, int curPage, int spp) {
+		super();
+		this.type = type;
+		this.gunguCode = gunguCode;
+		this.dong = dong;
+		this.curPage = curPage;
+		this.spp = spp;
+	    this.start = (this.curPage-1)*this.spp;
+	}
+
 
 
 	public DealDto(String name, String buildYear, String dealYear, String dealMonth, String dealDay, String floor,
-			String jibun, String dong, String gunguCode, String area, String lat, String lng, String deposit,
-			String rentMoney, String dealAmount) {
+			String jibun, String dong, String gunguCode, String area, String deposit, String rentMoney, int type,
+			String dealAmount, int curPage, int spp, int start) {
 		super();
 		this.name = name;
 		this.buildYear = buildYear;
@@ -39,14 +57,22 @@ public class DealDto {
 		this.dong = dong;
 		this.gunguCode = gunguCode;
 		this.area = area;
-		this.lat = lat;
-		this.lng = lng;
 		this.deposit = deposit;
 		this.rentMoney = rentMoney;
+		this.type = type;
 		this.dealAmount = dealAmount;
+		this.curPage = curPage;
+		this.spp = spp;
+		this.start = start;
 	}
 
+	public int getType() {
+		return type;
+	}
 
+	public void setType(int type) {
+		this.type = type;
+	}
 
 	public String getBuildYear() {
 		return buildYear;
@@ -110,18 +136,7 @@ public class DealDto {
 	public void setArea(String area) {
 		this.area = area;
 	}
-	public String getLat() {
-		return lat;
-	}
-	public void setLat(String lat) {
-		this.lat = lat;
-	}
-	public String getLng() {
-		return lng;
-	}
-	public void setLng(String lng) {
-		this.lng = lng;
-	}
+	
 	public String getDeposit() {
 		return deposit;
 	}

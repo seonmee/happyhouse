@@ -25,6 +25,7 @@
          <typeAlias type="com.ssafy.house.dto.ApartDto" alias="ApartDto"/>
          <typeAlias type="com.ssafy.house.dto.MemberDto" alias="MemberDto"/>
          <typeAlias type="com.ssafy.house.dto.StoreDto" alias="StoreDto"/>
+         <typeAlias type="com.ssafy.house.dto.DealDto" alias="DealDto"/>
          <typeAlias type="com.ssafy.house.dto.SearchCondition" alias="SearchCondition"/>
          <typeAlias type="com.ssafy.house.dto.SearchCondition2" alias="SearchCondition2"/>
     </typeAliases> 
@@ -33,5 +34,7 @@
         <mapper resource="mapper/apart.xml"/>
         <mapper resource="mapper/user.xml"/>
         <mapper resource="mapper/store.xml"/>
+        <mapper resource="mapper/data.xml"/>
+        <mapper resource="mapper/deal.xml"/>
     </mappers>
 </configuration>

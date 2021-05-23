@@ -1,6 +1,7 @@
 package com.ssafy.house.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.house.dao.IBoardDao;
 import com.ssafy.house.dto.BoardDto;
+import com.ssafy.house.dto.SearchCondition;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -48,5 +50,17 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDto> searchBoard(BoardDto board) throws Exception {
 		return boardDao.searchBoard(board);
 	}
+
+	@Override
+	public List<BoardDto> listBoard(SearchCondition condition) throws Exception {
+		return boardDao.listBoard(condition);
+	}
+
+	@Override
+	public int getTotalLength(SearchCondition condition) throws Exception {
+		return boardDao.getTotalLength(condition);
+	}
+
+
 
 }

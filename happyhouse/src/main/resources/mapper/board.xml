@@ -10,7 +10,7 @@
      select bid, userid, title, created_at, updated_at
      from board
  </select>
- <select id="detailBoard" parameterType="java.lang.Integer" resultType="com.ssafy.house.dto.BoardDto">
+ <select id="detailBoard" parameterType="int" resultType="com.ssafy.house.dto.BoardDto">
  	select bid, userid, title, content, created_at, updated_at
  	from board
  	where bid = #{bid} order by bid
@@ -37,9 +37,41 @@
     title=#{title}, content=#{content}
 	WHERE bid=#{bid}                
  </update>
- <delete id="deleteBoard" parameterType="java.lang.Integer">
+ <delete id="deleteBoard" parameterType="int">
     DELETE FROM board WHERE bid=#{bid}    
  </delete>
+ 
+ <!-- 수정중 페이징처리 -->
+ 
+ 	<select id="listBoard" parameterType="SearchCondition" resultType="com.ssafy.house.dto.BoardDto">
+		select bid, userid, title, created_at
+		from board
+		<if test="word != null and word != ''">
+			<if test="key == 'title'">
+				where title like concat('%', #{word}, '%')
+			</if>
+			<if test="key == 'content'">
+				where content like concat('%',#{word},'%')
+			</if>
+		</if>
+		order by bid desc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="getTotalCount" parameterType="SearchCondition" resultType="int">
+		select count(bid)
+		from board
+		<if test="word != null and word != ''">
+			<if test="key == 'title'">
+				where title like concat('%', #{word}, '%')
+			</if>
+			<if test="key == 'content'">
+				where content like concat('%',#{word},'%')
+			</if>
+		</if>
+	</select>
+ 
+ 
  <!--  `bid`
   `userid`
   `title`

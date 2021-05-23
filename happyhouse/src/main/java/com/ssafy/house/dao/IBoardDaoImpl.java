@@ -1,12 +1,14 @@
 package com.ssafy.house.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ssafy.house.dto.BoardDto;
+import com.ssafy.house.dto.SearchCondition;
 
 @Repository
 public class IBoardDaoImpl implements IBoardDao {
@@ -47,5 +49,16 @@ public class IBoardDaoImpl implements IBoardDao {
 	public List<BoardDto> searchBoard(BoardDto board) throws Exception {
 		return sqlSession.selectList(ns+"searchBoard", board);
 	}
+
+	@Override
+	public List<BoardDto> listBoard(SearchCondition condition) throws Exception {
+		return sqlSession.selectList(ns+"listBoard", condition);
+	}
+
+	@Override
+	public int getTotalLength(SearchCondition condition) throws Exception {
+		return sqlSession.selectOne(ns+"getTotalCount", condition);
+	}
+
 
 }

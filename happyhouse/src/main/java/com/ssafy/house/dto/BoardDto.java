@@ -9,6 +9,7 @@ public class BoardDto implements Serializable {
 	private String content;
 	private String created_at;
 	private String updated_at;
+	private int totalPage;
 	// serach
 	private String searchtype;
 	private String searchname;

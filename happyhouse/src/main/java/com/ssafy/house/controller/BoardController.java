@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.house.dto.BoardDto;
+import com.ssafy.house.dto.SearchCondition;
 import com.ssafy.house.help.BoolResult;
 import com.ssafy.house.help.NumberResult;
 import com.ssafy.house.service.BoardService;
+import com.ssafy.house.util.PageNavigation2;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,16 +37,51 @@ public class BoardController {
 	@Autowired
 	private BoardService  boardService; 
 
+	
 	@ApiOperation(value = "모든 게시판의 정보를 반환한다.", response = List.class)
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
-	public ResponseEntity<List<BoardDto>> boards() throws Exception {
-		logger.info("1-------------findAllBoard-----------------------------"+new Date());
-		List<BoardDto> board = boardService.findAllBoard();
+	public ResponseEntity<List<BoardDto>> boards(SearchCondition condition) throws Exception {
+		logger.info("1-------------findAllBoard-----------------------------"+condition);
+		int start = condition.getCurrentPage() * condition.countPerPage - condition.countPerPage;
+		condition.setStart(start);
+		condition.setSpp(condition.countPerPage);
+		logger.info("2-------------findAllBoard-----------------------------"+condition);
+		List<BoardDto> board = boardService.listBoard(condition);
 		if (board.isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<BoardDto>>(board, HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "모든 게시판의 개수 반환", response = NumberResult.class)
+	@RequestMapping(value = "/board/total", method = RequestMethod.GET)
+	public ResponseEntity<NumberResult> totalBoard(SearchCondition condition) throws Exception {
+		logger.info("1-------------findAllBoard-----------------------------"+condition);
+		int total = boardService.getTotalLength(condition);
+   		NumberResult nr=new NumberResult();
+   		nr.setCount(total);
+   		nr.setName("addBoard");
+   		nr.setState("succ");
+   		logger.info("5-------------addEmployee-------id------------------"+total);
+   		if (total<=0) {
+   			nr.setCount(-1);
+   	   		nr.setName("noBoard");
+   	   		nr.setState("fail");
+   			return new ResponseEntity<NumberResult>(nr, HttpStatus.OK);
+   		}
+   		return new ResponseEntity<NumberResult>(nr, HttpStatus.OK);
+	}
+	
+//	@ApiOperation(value = "모든 게시판의 정보를 반환한다.", response = List.class)
+//	@RequestMapping(value = "/board", method = RequestMethod.GET)
+//	public ResponseEntity<List<BoardDto>> boards() throws Exception {
+//		logger.info("1-------------findAllBoard-----------------------------"+new Date());
+//		List<BoardDto> board = boardService.findAllBoard();
+//		if (board.isEmpty()) {
+//			return new ResponseEntity(HttpStatus.NO_CONTENT);
+//		}
+//		return new ResponseEntity<List<BoardDto>>(board, HttpStatus.OK);
+//	}
 	@ApiOperation(value = "게시판 아이디로 게시판의 정보를 찾는다.", response = BoardDto.class)
 	@RequestMapping(value = "/board/{bid}", method = RequestMethod.GET)
 	public ResponseEntity<BoardDto> board(@PathVariable int bid) throws Exception {
@@ -94,7 +131,7 @@ public class BoardController {
    		return new ResponseEntity<NumberResult>(nr, HttpStatus.OK);
    	}
     
-    @ApiOperation(value = " 사원의 정보를 수정한다.", response = BoolResult.class)
+    @ApiOperation(value = " 게시판의 정보를 수정한다.", response = BoolResult.class)
    	@RequestMapping(value = "/updateBoard", method = RequestMethod.PUT)
    	public ResponseEntity<BoolResult> updateEmployee2(@RequestBody BoardDto dto) throws Exception {
    		logger.info("1-------------updateEmployee-----------------------------"+new Date());
@@ -110,16 +147,16 @@ public class BoardController {
    		return new ResponseEntity<BoolResult>(nr, HttpStatus.OK);
    	}
     
-    @ApiOperation(value = "검색한 모든 게시판의 정보를 반환한다.", response = List.class)
-	@RequestMapping(value = "/searchBoard/{searchtype}/{searchname}", method = RequestMethod.GET)
-	public ResponseEntity<List<BoardDto>> searchboard(@PathVariable String searchtype, @PathVariable String searchname) throws Exception {
-		logger.info("1-------------searchAllBoard-----------------------------"+new Date());
-		BoardDto dto = new BoardDto(searchtype, searchname);
-		List<BoardDto> board = boardService.searchBoard(dto);
-		if (board.isEmpty()) {
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<List<BoardDto>>(board, HttpStatus.OK);
-	}
+//    @ApiOperation(value = "검색한 모든 게시판의 정보를 반환한다.", response = List.class)
+//	@RequestMapping(value = "/searchBoard/{searchtype}/{searchname}", method = RequestMethod.GET)
+//	public ResponseEntity<List<BoardDto>> searchboard(@PathVariable String searchtype, @PathVariable String searchname) throws Exception {
+//		logger.info("1-------------searchAllBoard-----------------------------"+new Date());
+//		BoardDto dto = new BoardDto(searchtype, searchname);
+//		List<BoardDto> board = boardService.searchBoard(dto);
+//		if (board.isEmpty()) {
+//			return new ResponseEntity(HttpStatus.NO_CONTENT);
+//		}
+//		return new ResponseEntity<List<BoardDto>>(board, HttpStatus.OK);
+//	}
     
 }

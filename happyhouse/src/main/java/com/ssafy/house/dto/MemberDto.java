@@ -1,6 +1,8 @@
 package com.ssafy.house.dto;
 
-public class MemberDto {
+import java.io.Serializable;
+
+public class MemberDto implements Serializable{
 
 	private String rid;
 	private String userid;
@@ -112,7 +114,12 @@ public class MemberDto {
 	public void setRolename(String rolename) {
 		this.rolename = rolename;
 	}
+	@Override
+	public String toString() {
+		return "MemberDto [rid=" + rid + ", userid=" + userid + ", username=" + username + ", password=" + password
+				+ ", email=" + email + ", number=" + number + ", address=" + address + ", created_at=" + created_at
+				+ ", updated_at=" + updated_at + ", rolename=" + rolename + "]";
+	}
 	
 	
-
 }

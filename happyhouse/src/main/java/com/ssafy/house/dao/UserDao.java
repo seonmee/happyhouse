@@ -10,12 +10,14 @@ import com.ssafy.house.dto.SearchCondition;
 public interface UserDao {
 
 	public MemberDto login(MemberDto memberDto) throws SQLException;
-	public List<MemberDto> userList();
 	public MemberDto userInfo(String userid);
 	public void userRegister(MemberDto memberDto);
 	public void userModify(MemberDto memberDto);
 	public void userDelete(String userid);
-	int getTotalSearchCount(SearchCondition searchcondition);
-	List<MemberDto> searchMember(SearchCondition searchcondition);
+//	int getTotalSearchCount(SearchCondition searchcondition);
+//	List<MemberDto> searchMember(SearchCondition searchcondition);
 	public MemberDto findpwd(MemberDto memberDto);
+
+	public List<MemberDto> userList(SearchCondition searchcondition);
+	public int getTotalLength(SearchCondition condition) throws Exception;
 }

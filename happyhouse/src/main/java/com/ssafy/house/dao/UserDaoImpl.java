@@ -25,11 +25,6 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<MemberDto> userList() {
-		return sqlSession.selectList(ns+"userList");
-	}
-
-	@Override
 	public MemberDto userInfo(String userid) {
 		return sqlSession.selectOne(ns+"userInfo", userid);
 	}
@@ -49,19 +44,29 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.delete(ns+"userDelete",userid);
 	}
 
-	@Override
-	public int getTotalSearchCount(SearchCondition searchcondition) {
-		return sqlSession.selectOne(ns+"",searchcondition);
-	}
+//	@Override
+//	public int getTotalSearchCount(SearchCondition searchcondition) {
+//		return sqlSession.selectOne(ns+"",searchcondition);
+//	}
 
-	@Override
-	public List<MemberDto> searchMember(SearchCondition searchcondition) {
-		return sqlSession.selectList(ns+"searchMember", searchcondition);
-	}
+//	@Override
+//	public List<MemberDto> searchMember(SearchCondition searchcondition) {
+//		return sqlSession.selectList(ns+"searchMember", searchcondition);
+//	}
 	
 	@Override
 	public MemberDto findpwd(MemberDto memberDto) {
 		return sqlSession.selectOne(ns+"findpwd",memberDto);
+	}
+
+	@Override
+	public List<MemberDto> userList(SearchCondition searchcondition) {
+		return sqlSession.selectList(ns+"userList", searchcondition);
+	}
+
+	@Override
+	public int getTotalLength(SearchCondition condition) throws Exception {
+		return sqlSession.selectOne(ns+"getTotalCount", condition);
 	}
 
 }

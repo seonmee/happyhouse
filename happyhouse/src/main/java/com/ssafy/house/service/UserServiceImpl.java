@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import com.ssafy.house.dao.UserDao;
 import com.ssafy.house.dto.MemberDto;
 import com.ssafy.house.dto.SearchCondition;
-import com.ssafy.house.util.PageNavigation;
+import com.ssafy.house.util.PageNavigation2;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,11 +32,6 @@ public class UserServiceImpl implements UserService {
 		if(memberDto.getUserid() == null || memberDto.getPassword() == null)
 			return null;
 		return userDao.login(memberDto);
-	}
-
-	@Override
-	public List<MemberDto> userList() {
-		return userDao.userList();
 	}
 
 	@Override
@@ -62,24 +57,24 @@ public class UserServiceImpl implements UserService {
 		return true;
 	}
 
-	@Override
-	public Map<String, Object> pagingSearch(SearchCondition condition) {
-		int totalCount = userDao.getTotalSearchCount(condition);
-//		PageNavigation nav = new PageNavigation(condition.getCurrentPage(), totalCount);
-        // 103 줄 /20 줄 -> 6페이지 
-		// 결과를 전달할 pagingResult를 만들고 books와 navigation을 키로 값을 저장한다.
-		Map<String, Object> pagingResult = new HashMap<>();
-
-		pagingResult.put("users", searchMember(condition));
+//	@Override
+//	public Map<String, Object> pagingSearch(SearchCondition condition) {
+//		int totalCount = userDao.getTotalSearchCount(condition);
+//		PageNavigation2 nav = new PageNavigation2(condition.getCurrentPage(), totalCount);
+//        // 103 줄 /20 줄 -> 6페이지 
+//		// 결과를 전달할 pagingResult를 만들고 books와 navigation을 키로 값을 저장한다.
+//		Map<String, Object> pagingResult = new HashMap<>();
+//
+//		pagingResult.put("users", searchMember(condition));
 //		pagingResult.put("navigation", nav);
+//
+//		return pagingResult;
+//	}
 
-		return pagingResult;
-	}
-
-	@Override
-	public List<MemberDto> searchMember(SearchCondition searchcondition) {
-		return userDao.searchMember(searchcondition);
-	}
+//	@Override
+//	public List<MemberDto> searchMember(SearchCondition searchcondition) {
+//		return userDao.searchMember(searchcondition);
+//	}
 	
 	@Override
 	public MemberDto findpwd(MemberDto memberDto) {
@@ -94,5 +89,15 @@ public class UserServiceImpl implements UserService {
 		message.setSubject("[임시]비밀번호 찾기");
 		message.setText("비밀번호는" + pw + "입니다.");
 		mailSender.send(message);
+	}
+
+	@Override
+	public List<MemberDto> userList(SearchCondition condition) {
+		return userDao.userList(condition);
+	}
+
+	@Override
+	public int getTotalLength(SearchCondition condition) throws Exception {
+		return userDao.getTotalLength(condition);
 	}
 }

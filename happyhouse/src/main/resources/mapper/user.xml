@@ -11,11 +11,11 @@
 	
 	<update id="userModify" parameterType="MemberDto">
 		update users
-		set password = #{password}, email = #{email}, number=#{number}, address = #{address}
+		set username=#{username}, password = #{password}, email = #{email}, number=#{number}, address = #{address}
 		where userid = #{userid}
 	</update>
 	
-	<select id="searchMember" resultType="MemberDto" parameterType="SearchCondition">
+	<!--<select id="searchMember" resultType="MemberDto" parameterType="SearchCondition">
 		select userid, username, password, email, number, address, date_format(created_at, '%y.%m.%d') created_at
 		from users
 		<if test="key!='none'">
@@ -27,22 +27,16 @@
 		<if test="limit">
 			limit #{offset} , #{countPerPage}
 		</if>
-	</select>
+	</select> -->
 
-	<!-- 검색 조건에 해당하는 데이터 건수를 반환한다. -->
+	<!-- 검색 조건에 해당하는 데이터 건수를 반환한다. 
 	<select id="getTotalSearchCount" resultType="int"
 		parameterType="SearchCondition">
 		select count(*) from users
 		<if test="key!='none'">
 			where ${key} like concat('%', #{word} ,'%')
 		</if>
-	</select>
-	
-	<select id="userList" resultType="MemberDto">
-		select userid, username, password, email, number, address, date_format(created_at, '%y.%m.%d') created_at
-		from users
-		order by created_at desc;
-	</select>
+	</select>-->
 	
 	<select id="userInfo" parameterType="String" resultType="MemberDto">
 		select userid, username, password, email, number, address, date_format(created_at, '%y.%m.%d') created_at
@@ -64,6 +58,34 @@
 		select userid, username, password, email, number, address
 		from users
 		where userid=#{userid} and username=#{username} and email=#{email}
+	</select>
+	
+	<select id="userList" parameterType="SearchCondition" resultType="MemberDto">
+		select userid, username, password, email, number, address, date_format(created_at, '%y.%m.%d') created_at
+		from users
+		<if test="word != null and word != ''">
+			<if test="key == 'userid'">
+				where userid like concat('%', #{word}, '%')
+			</if>
+			<if test="key == 'address'">
+				where address like concat('%',#{word},'%')
+			</if>
+		</if>
+		order by created_at desc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="getTotalCount" parameterType="SearchCondition" resultType="int">
+		select count(userid)
+		from users
+		<if test="word != null and word != ''">
+			<if test="key == 'userid'">
+				where userid like concat('%', #{word}, '%')
+			</if>
+			<if test="key == 'address'">
+				where address like concat('%',#{word},'%')
+			</if>
+		</if>
 	</select>
 	
 </mapper>

@@ -1,6 +1,8 @@
 package com.ssafy.house.dto;
 
-public class SearchCondition {
+import java.io.Serializable;
+
+public class SearchCondition implements Serializable{
 	// 한 페이지에 몇개나 보여줄 것인지 결정한다.
 	public final int countPerPage = 10;
 
@@ -16,7 +18,24 @@ public class SearchCondition {
 	private int currentPage = 1;
 	// limit 를 적용할 것인지 설정한다.
 	private boolean limit = true;
+	
+	private int start;
+	private int spp;
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getSpp() {
+		return spp;
+	}
+	public void setSpp(int spp) {
+		this.spp = spp;
+	}
 
+	
+	
 	public SearchCondition() {
 	}
 

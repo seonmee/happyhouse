@@ -1,6 +1,8 @@
 package com.ssafy.house.dto;
 
-public class CityDto {
+import java.io.Serializable;
+
+public class CityDto implements Serializable{
 	private String cityCode;
 	private String city;
 	private String guCode;

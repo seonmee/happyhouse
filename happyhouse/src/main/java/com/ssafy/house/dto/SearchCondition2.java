@@ -1,6 +1,8 @@
 package com.ssafy.house.dto;
 
-public class SearchCondition2 {
+import java.io.Serializable;
+
+public class SearchCondition2 implements Serializable{
 
 	private String key = "none";
 	private String word = "none";

@@ -70,7 +70,7 @@ public class DataController {
 					dealdto.setRentMoney(getTagValue("월세",eElement));
 					dealdto.setFloor(getTagValue("층",eElement));
 					dealdto.setDong(getTagValue("법정동",eElement));
-					dealdto.setGunguCode(getTagValue("시군구",eElement));
+					dealdto.setGunguCode(getTagValue("지역코드",eElement));
 					dealdto.setBuildYear(getTagValue("건축년도",eElement));
 					dealdto.setName(getTagValue("단지",eElement));
 					dealdto.setJibun(getTagValue("지번",eElement));
@@ -120,7 +120,7 @@ public class DataController {
 					dealdto.setDealAmount(getTagValue("거래금액",eElement));
 					dealdto.setFloor(getTagValue("층",eElement));
 					dealdto.setDong(getTagValue("법정동",eElement));
-					dealdto.setGunguCode(getTagValue("시군구",eElement));
+					dealdto.setGunguCode(getTagValue("지역코드",eElement));
 					dealdto.setBuildYear(getTagValue("건축년도",eElement));
 					dealdto.setName(getTagValue("단지",eElement));
 					dealdto.setJibun(getTagValue("지번",eElement));

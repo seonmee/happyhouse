@@ -135,9 +135,9 @@ public class DataController {
 			e.printStackTrace();
 		}
 	}
-    /* 수정 필요 */	
+   	
 	/* 연립 다세대 전월세 정보 */
-	@ApiOperation(value = "연립 다세대 전월세 정보를 DB에 저장  ********** 미완성 *************")
+	@ApiOperation(value = "연립 다세대 전월세 정보를 DB에 저장")
 	@PostMapping("/addHomeRent/{gunguCode}/{dealYmd}")
 	public void addHomeRentData(@PathVariable String gunguCode, @PathVariable String dealYmd) {
 		StringBuffer result = new StringBuffer();
@@ -163,11 +163,14 @@ public class DataController {
 					Element eElement = (Element) nNode;
 					
 					DealDto dealdto = new DealDto();
-					dealdto.setArea(getTagValue("대지권면적",eElement));
+					
+					logger.info(getTagValue("전용면적",eElement));
+					dealdto.setArea(getTagValue("전용면적",eElement));
 					dealdto.setDealDay(getTagValue("일",eElement));
 					dealdto.setDealMonth(getTagValue("월",eElement));
 					dealdto.setDealYear(getTagValue("년",eElement));
-					dealdto.setDealAmount(getTagValue("거래금액",eElement));
+					dealdto.setDeposit(getTagValue("보증금액",eElement));
+					dealdto.setRentMoney(getTagValue("월세금액",eElement));
 					dealdto.setFloor(getTagValue("층",eElement));
 					dealdto.setDong(getTagValue("법정동",eElement));
 					dealdto.setGunguCode(getTagValue("지역코드",eElement));
@@ -213,7 +216,7 @@ public class DataController {
 					Element eElement = (Element) nNode;
 					
 					DealDto dealdto = new DealDto();
-					dealdto.setArea(getTagValue("대지권면적",eElement));
+					dealdto.setArea(getTagValue("전용면적",eElement));
 					dealdto.setDealDay(getTagValue("일",eElement));
 					dealdto.setDealMonth(getTagValue("월",eElement));
 					dealdto.setDealYear(getTagValue("년",eElement));
@@ -235,10 +238,9 @@ public class DataController {
 			e.printStackTrace();
 		}
 	}
-	
-	 	/* 수정 필요 */	
+		
 		/* 아파트 전월세 정보 */
-		@ApiOperation(value = "아파트 전월세 정보를 DB에 저장  ********** 미완성 *************")
+		@ApiOperation(value = "아파트 전월세 정보를 DB에 저장")
 		@PostMapping("/addAptRent/{gunguCode}/{dealYmd}")
 		public void addAptRentData(@PathVariable String gunguCode, @PathVariable String dealYmd) {
 			StringBuffer result = new StringBuffer();
@@ -268,10 +270,11 @@ public class DataController {
 						dealdto.setDealDay(getTagValue("일",eElement));
 						dealdto.setDealMonth(getTagValue("월",eElement));
 						dealdto.setDealYear(getTagValue("년",eElement));
-						dealdto.setDealAmount(getTagValue("거래금액",eElement));
+						dealdto.setDeposit(getTagValue("보증금액",eElement));
+						dealdto.setRentMoney(getTagValue("월세금액",eElement));
 						dealdto.setFloor(getTagValue("층",eElement));
 						dealdto.setDong(getTagValue("법정동",eElement));
-						dealdto.setGunguCode(getTagValue("법정동시군구코드",eElement));
+						dealdto.setGunguCode(getTagValue("지역코드",eElement));
 						dealdto.setBuildYear(getTagValue("건축년도",eElement));
 						dealdto.setName(getTagValue("아파트",eElement));
 						dealdto.setJibun(getTagValue("지번",eElement));

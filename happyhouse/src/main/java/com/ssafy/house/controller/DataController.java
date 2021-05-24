@@ -62,18 +62,18 @@ public class DataController {
 					Element eElement = (Element) nNode;
 					
 					DealDto dealdto = new DealDto();
-					dealdto.setArea(getTagValue("전용면적",eElement));
-					dealdto.setDealDay(getTagValue("일",eElement));
-					dealdto.setDealMonth(getTagValue("월",eElement));
-					dealdto.setDealYear(getTagValue("년",eElement));
-					dealdto.setDeposit(getTagValue("보증금",eElement));
-					dealdto.setRentMoney(getTagValue("월세",eElement));
-					dealdto.setFloor(getTagValue("층",eElement));
-					dealdto.setDong(getTagValue("법정동",eElement));
-					dealdto.setGunguCode(getTagValue("지역코드",eElement));
-					dealdto.setBuildYear(getTagValue("건축년도",eElement));
-					dealdto.setName(getTagValue("단지",eElement));
-					dealdto.setJibun(getTagValue("지번",eElement));
+					dealdto.setArea(getTagValue("전용면적",eElement).trim());
+					dealdto.setDealDay(getTagValue("일",eElement).trim());
+					dealdto.setDealMonth(getTagValue("월",eElement).trim());
+					dealdto.setDealYear(getTagValue("년",eElement).trim());
+					dealdto.setDeposit(getTagValue("보증금",eElement).trim());
+					dealdto.setRentMoney(getTagValue("월세",eElement).trim());
+					dealdto.setFloor(getTagValue("층",eElement).trim());
+					dealdto.setDong(getTagValue("법정동",eElement).trim());
+					dealdto.setGunguCode(getTagValue("지역코드",eElement).trim());
+					dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
+					dealdto.setName(getTagValue("단지",eElement).trim());
+					dealdto.setJibun(getTagValue("지번",eElement).trim());
 					
 					dataService.addOfficeRentData(dealdto);
 					
@@ -113,17 +113,17 @@ public class DataController {
 					Element eElement = (Element) nNode;
 					
 					DealDto dealdto = new DealDto();
-					dealdto.setArea(getTagValue("전용면적",eElement));
-					dealdto.setDealDay(getTagValue("일",eElement));
-					dealdto.setDealMonth(getTagValue("월",eElement));
-					dealdto.setDealYear(getTagValue("년",eElement));
-					dealdto.setDealAmount(getTagValue("거래금액",eElement));
-					dealdto.setFloor(getTagValue("층",eElement));
-					dealdto.setDong(getTagValue("법정동",eElement));
-					dealdto.setGunguCode(getTagValue("지역코드",eElement));
-					dealdto.setBuildYear(getTagValue("건축년도",eElement));
-					dealdto.setName(getTagValue("단지",eElement));
-					dealdto.setJibun(getTagValue("지번",eElement));
+					dealdto.setArea(getTagValue("전용면적",eElement).trim());
+					dealdto.setDealDay(getTagValue("일",eElement).trim());
+					dealdto.setDealMonth(getTagValue("월",eElement).trim());
+					dealdto.setDealYear(getTagValue("년",eElement).trim());
+					dealdto.setDealAmount(getTagValue("거래금액",eElement).trim());
+					dealdto.setFloor(getTagValue("층",eElement).trim());
+					dealdto.setDong(getTagValue("법정동",eElement).trim());
+					dealdto.setGunguCode(getTagValue("지역코드",eElement).trim());
+					dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
+					dealdto.setName(getTagValue("단지",eElement).trim());
+					dealdto.setJibun(getTagValue("지번",eElement).trim());
 					
 					dataService.addOfficeDealData(dealdto);
 					
@@ -164,19 +164,19 @@ public class DataController {
 					
 					DealDto dealdto = new DealDto();
 					
-					logger.info(getTagValue("전용면적",eElement));
-					dealdto.setArea(getTagValue("전용면적",eElement));
-					dealdto.setDealDay(getTagValue("일",eElement));
-					dealdto.setDealMonth(getTagValue("월",eElement));
-					dealdto.setDealYear(getTagValue("년",eElement));
-					dealdto.setDeposit(getTagValue("보증금액",eElement));
-					dealdto.setRentMoney(getTagValue("월세금액",eElement));
-					dealdto.setFloor(getTagValue("층",eElement));
-					dealdto.setDong(getTagValue("법정동",eElement));
-					dealdto.setGunguCode(getTagValue("지역코드",eElement));
-					dealdto.setBuildYear(getTagValue("건축년도",eElement));
-					dealdto.setName(getTagValue("연립다세대",eElement));
-					dealdto.setJibun(getTagValue("지번",eElement));
+					logger.info(getTagValue("전용면적",eElement).trim());
+					dealdto.setArea(getTagValue("전용면적",eElement).trim());
+					dealdto.setDealDay(getTagValue("일",eElement).trim());
+					dealdto.setDealMonth(getTagValue("월",eElement).trim());
+					dealdto.setDealYear(getTagValue("년",eElement).trim());
+					dealdto.setDeposit(getTagValue("보증금액",eElement).trim());
+					dealdto.setRentMoney(getTagValue("월세금액",eElement).trim());
+					dealdto.setFloor(getTagValue("층",eElement).trim());
+					dealdto.setDong(getTagValue("법정동",eElement).trim());
+					dealdto.setGunguCode(getTagValue("지역코드",eElement).trim());
+					dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
+					dealdto.setName(getTagValue("연립다세대",eElement).trim());
+					dealdto.setJibun(getTagValue("지번",eElement).trim());
 					
 					dataService.addHomeRentData(dealdto);
 					
@@ -216,17 +216,17 @@ public class DataController {
 					Element eElement = (Element) nNode;
 					
 					DealDto dealdto = new DealDto();
-					dealdto.setArea(getTagValue("전용면적",eElement));
-					dealdto.setDealDay(getTagValue("일",eElement));
-					dealdto.setDealMonth(getTagValue("월",eElement));
-					dealdto.setDealYear(getTagValue("년",eElement));
-					dealdto.setDealAmount(getTagValue("거래금액",eElement));
-					dealdto.setFloor(getTagValue("층",eElement));
-					dealdto.setDong(getTagValue("법정동",eElement));
-					dealdto.setGunguCode(getTagValue("지역코드",eElement));
-					dealdto.setBuildYear(getTagValue("건축년도",eElement));
-					dealdto.setName(getTagValue("연립다세대",eElement));
-					dealdto.setJibun(getTagValue("지번",eElement));
+					dealdto.setArea(getTagValue("전용면적",eElement).trim());
+					dealdto.setDealDay(getTagValue("일",eElement).trim());
+					dealdto.setDealMonth(getTagValue("월",eElement).trim());
+					dealdto.setDealYear(getTagValue("년",eElement).trim());
+					dealdto.setDealAmount(getTagValue("거래금액",eElement).trim());
+					dealdto.setFloor(getTagValue("층",eElement).trim());
+					dealdto.setDong(getTagValue("법정동",eElement).trim());
+					dealdto.setGunguCode(getTagValue("지역코드",eElement).trim());
+					dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
+					dealdto.setName(getTagValue("연립다세대",eElement).trim());
+					dealdto.setJibun(getTagValue("지번",eElement).trim());
 					
 					dataService.addHomeDealData(dealdto);
 					
@@ -266,18 +266,18 @@ public class DataController {
 						Element eElement = (Element) nNode;
 						
 						DealDto dealdto = new DealDto();
-						dealdto.setArea(getTagValue("전용면적",eElement));
-						dealdto.setDealDay(getTagValue("일",eElement));
-						dealdto.setDealMonth(getTagValue("월",eElement));
-						dealdto.setDealYear(getTagValue("년",eElement));
-						dealdto.setDeposit(getTagValue("보증금액",eElement));
+						dealdto.setArea(getTagValue("전용면적",eElement).trim());
+						dealdto.setDealDay(getTagValue("일",eElement).trim());
+						dealdto.setDealMonth(getTagValue("월",eElement).trim());
+						dealdto.setDealYear(getTagValue("년",eElement).trim());
+						dealdto.setDeposit(getTagValue("보증금액",eElement).trim());
 						dealdto.setRentMoney(getTagValue("월세금액",eElement).trim());
-						dealdto.setFloor(getTagValue("층",eElement));
-						dealdto.setDong(getTagValue("법정동",eElement));
-						dealdto.setGunguCode(getTagValue("지역코드",eElement));
-						dealdto.setBuildYear(getTagValue("건축년도",eElement));
-						dealdto.setName(getTagValue("아파트",eElement));
-						dealdto.setJibun(getTagValue("지번",eElement));
+						dealdto.setFloor(getTagValue("층",eElement).trim());
+						dealdto.setDong(getTagValue("법정동",eElement).trim());
+						dealdto.setGunguCode(getTagValue("지역코드",eElement).trim());
+						dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
+						dealdto.setName(getTagValue("아파트",eElement).trim());
+						dealdto.setJibun(getTagValue("지번",eElement).trim());
 						
 						dataService.addAptRentData(dealdto);
 						
@@ -317,17 +317,17 @@ public class DataController {
 						Element eElement = (Element) nNode;
 						
 						DealDto dealdto = new DealDto();
-						dealdto.setArea(getTagValue("전용면적",eElement));
-						dealdto.setDealDay(getTagValue("일",eElement));
-						dealdto.setDealMonth(getTagValue("월",eElement));
-						dealdto.setDealYear(getTagValue("년",eElement));
-						dealdto.setDealAmount(getTagValue("거래금액",eElement));
-						dealdto.setFloor(getTagValue("층",eElement));
-						dealdto.setDong(getTagValue("법정동",eElement));
-						dealdto.setGunguCode(getTagValue("법정동시군구코드",eElement));
-						dealdto.setBuildYear(getTagValue("건축년도",eElement));
-						dealdto.setName(getTagValue("아파트",eElement));
-						dealdto.setJibun(getTagValue("지번",eElement));
+						dealdto.setArea(getTagValue("전용면적",eElement).trim());
+						dealdto.setDealDay(getTagValue("일",eElement).trim());
+						dealdto.setDealMonth(getTagValue("월",eElement).trim());
+						dealdto.setDealYear(getTagValue("년",eElement).trim());
+						dealdto.setDealAmount(getTagValue("거래금액",eElement).trim());
+						dealdto.setFloor(getTagValue("층",eElement).trim());
+						dealdto.setDong(getTagValue("법정동",eElement).trim());
+						dealdto.setGunguCode(getTagValue("법정동시군구코드",eElement).trim());
+						dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
+						dealdto.setName(getTagValue("아파트",eElement).trim());
+						dealdto.setJibun(getTagValue("지번",eElement).trim());
 						
 						dataService.addAptDealData(dealdto);
 						

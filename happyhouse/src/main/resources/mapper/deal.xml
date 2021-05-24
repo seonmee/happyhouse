@@ -7,11 +7,13 @@
  <select id="officeRentList" parameterType ="DealDto" resultType="DealDto">
      SELECT dong, office_name name, gungu_code gunguCode, deposit, build_year buildYear, deal_year dealYear, deal_month dealMonth, deal_day dealDay, area, base_address_floor floor, jibun, rent_money rentMoney 
        FROM officerent
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
       <if test="type == 1">
-      WHERE rent_money > 0
+     	AND rent_money > 0
       </if>
       <if test="type == 2">
-      WHERE rent_money = 0
+      	AND rent_money = 0
       </if>
    ORDER BY buildYear DESC
       LIMIT #{start}, #{spp}
@@ -20,34 +22,42 @@
  <select id="getTotCntOfficeRent" parameterType="DealDto" resultType="int">
      SELECT count(no) 
        FROM officerent
-       <if test="type == 1">
-      WHERE rent_money > 0
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
+      <if test="type == 1">
+     	AND rent_money > 0
       </if>
       <if test="type == 2">
-      WHERE rent_money = 0
+      	AND rent_money = 0
       </if>
  </select>
  
  <select id="officeDealList" parameterType ="DealDto" resultType="DealDto">
      SELECT dong, office_name name, gungu_code gunguCode, deal_amount dealAmount, build_year buildYear, deal_year dealYear, deal_month dealMonth, deal_day dealDay, area, base_address_floor floor, jibun 
        FROM officedeal
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
    ORDER BY buildYear DESC
       LIMIT #{start}, #{spp}
  </select>
  
  <select id="getTotCntOfficeDeal" parameterType="DealDto" resultType="int">
      SELECT count(no) 
-       FROM officedeal
+      FROM officedeal
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
  </select>
  
   <select id="homeRentList" parameterType ="DealDto" resultType="DealDto">
       SELECT dong, home_name name, gungu_code gunguCode, deposit, build_year buildYear, deal_year dealYear, deal_month dealMonth, deal_day dealDay, area, base_address_floor floor, jibun , rent_money rentMoney 
        FROM homerent
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
       <if test="type == 1">
-      WHERE rent_money > 0
+     	AND rent_money > 0
       </if>
       <if test="type == 2">
-      WHERE rent_money = 0
+      	AND rent_money = 0
       </if>
    ORDER BY buildYear DESC
       LIMIT #{start}, #{spp}
@@ -56,34 +66,42 @@
  <select id="getTotCntHomeRent" parameterType="DealDto" resultType="int">
      SELECT count(no) 
        FROM homerent
-       <if test="type == 1">
-      WHERE rent_money > 0
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
+      <if test="type == 1">
+     	AND rent_money > 0
       </if>
-    <if test="type == 2">
-      WHERE rent_money = 0
+      <if test="type == 2">
+      	AND rent_money = 0
       </if>
  </select>
  
  <select id="homeDealList" parameterType ="DealDto" resultType="DealDto">
      SELECT dong, home_name name, gungu_code gunguCode, deal_amount dealAmount, build_year buildYear, deal_year dealYear, deal_month dealMonth, deal_day dealDay, area, base_address_floor floor, jibun 
        FROM homedeal
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
    ORDER BY buildYear DESC
       LIMIT #{start}, #{spp}
  </select>
  
  <select id="getTotCntHomeDeal" parameterType="DealDto" resultType="int">
-     SELECT count(no) 
-       FROM homedeal
+     SELECT count(no)
+      FROM homedeal
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
  </select>
  
  <select id="aptRentList" parameterType ="DealDto" resultType="DealDto">
      SELECT dong, apt_name name, gungu_code gunguCode, deposit, build_year buildYear, deal_year dealYear, deal_month dealMonth, deal_day dealDay, area, base_address_floor floor, jibun, rent_money rentMoney  
        FROM aptrent
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
       <if test="type == 1">
-      WHERE rent_money > 0
+     	AND rent_money > 0
       </if>
-     <if test="type == 2">
-      WHERE rent_money = 0
+      <if test="type == 2">
+      	AND rent_money = 0
       </if>
    ORDER BY buildYear DESC
       LIMIT #{start}, #{spp}
@@ -92,24 +110,30 @@
  <select id="getTotCntAptRent" parameterType="DealDto" resultType="int">
      SELECT count(no) 
        FROM aptrent
-       <if test="type == 1">
-      WHERE rent_money > 0
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
+      <if test="type == 1">
+     	AND rent_money > 0
       </if>
       <if test="type == 2">
-      WHERE rent_money = 0
+      	AND rent_money = 0
       </if>
  </select>
  
  <select id="aptDealList" parameterType ="DealDto" resultType="DealDto">
      SELECT dong, apt_name name, gungu_code gunguCode, deal_amount dealAmount, build_year buildYear, deal_year dealYear, deal_month dealMonth, deal_day dealDay, area, base_address_floor floor, jibun 
        FROM aptdeal
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong}
    ORDER BY buildYear DESC
       LIMIT #{start}, #{spp}
  </select>
  
  <select id="getTotCntAptDeal" parameterType="DealDto" resultType="int">
-     SELECT count(no) 
+     SELECT count(no)
        FROM aptdeal
+      WHERE gungu_code = #{gunguCode}
+        AND dong = #{dong} 
  </select>
 	
 </mapper>

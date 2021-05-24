@@ -81,9 +81,8 @@ public class DealController {
 		return new ResponseEntity<Integer>(tot, HttpStatus.OK);
 	}
 	
-	/* 수정 필요 */	
 	/* 연립 다세대 전/월세 정보 */
-	@ApiOperation(value = "연립 다세대 전/월세 정보 조회 (페이지당 10개) type: 1 = 월세, 2 = 전세   ******** 미완성 *********", response = List.class)
+	@ApiOperation(value = "연립 다세대 전/월세 정보 조회 (페이지당 10개) type: 1 = 월세, 2 = 전세 ", response = List.class)
 	@RequestMapping(value = {"/homeRentList/{type}/{gunguCode}/{dong}/{currentPage}"},method=RequestMethod.GET)
 	public ResponseEntity<List<DealDto>> homeRentList(@PathVariable int type, @PathVariable String gunguCode, @PathVariable String dong, @PathVariable int currentPage) throws Exception {
 		logger.info("-------------------homeRentList--------------------"+new Date());
@@ -95,9 +94,9 @@ public class DealController {
 		}
 		return new ResponseEntity<List<DealDto>>(deals, HttpStatus.OK);
 	}
-	/* 수정 필요 */
+	
 	/* 연립 다세대 전/월세 정보 전체 수 */
-	@ApiOperation(value = "연립 다세대 전/월세 정보 전체 수 type: 1 = 월세, 2 = 전세 ******** 미완성 *********", response = List.class)
+	@ApiOperation(value = "연립 다세대 전/월세 정보 전체 수 type: 1 = 월세, 2 = 전세", response = List.class)
 	@RequestMapping(value = {"/getTotCntHomeRent/{type}/{gunguCode}/{dong}/{currentPage}"},method=RequestMethod.GET)
 	public ResponseEntity<Integer> getTotCntHomeRent(@PathVariable int type, @PathVariable String gunguCode, @PathVariable String dong, @PathVariable int currentPage) throws Exception {
 		logger.info("1-------------getTotCntHomeRent-----------------------------"+new Date());
@@ -131,9 +130,9 @@ public class DealController {
 		
 		return new ResponseEntity<Integer>(tot, HttpStatus.OK);
 	}
-	/* 수정 필요 */	
+		
 	/* 아파트 전/월세 정보 */
-	@ApiOperation(value = "아파트 전/월세 정보 조회 (페이지당 10개) ******** 미완성 *********", response = List.class)
+	@ApiOperation(value = "아파트 전/월세 정보 조회 (페이지당 10개)", response = List.class)
 	@RequestMapping(value = {"/aptRentList/{type}/{gunguCode}/{dong}/{currentPage}"},method=RequestMethod.GET)
 	public ResponseEntity<List<DealDto>> aptRentList(@PathVariable int type, @PathVariable String gunguCode, @PathVariable String dong, @PathVariable int currentPage) throws Exception {
 		logger.info("-------------------aptRentList--------------------"+new Date());
@@ -145,9 +144,9 @@ public class DealController {
 		}
 		return new ResponseEntity<List<DealDto>>(deals, HttpStatus.OK);
 	}
-	/* 수정 필요 */	
+		
 	/* 아파트 전/월세 정보 전체 수 */
-	@ApiOperation(value = "아파트 전/월세 정보 전체 수 ******** 미완성 *********", response = List.class)
+	@ApiOperation(value = "아파트 전/월세 정보 전체 수", response = List.class)
 	@RequestMapping(value = {"/getTotCntAptRent/{type}/{gunguCode}/{dong}/{currentPage}"},method=RequestMethod.GET)
 	public ResponseEntity<Integer> getTotCntAptRent(@PathVariable int type, @PathVariable String gunguCode, @PathVariable String dong, @PathVariable int currentPage) throws Exception {
 		logger.info("1-------------getTotCntAptRent-----------------------------"+new Date());

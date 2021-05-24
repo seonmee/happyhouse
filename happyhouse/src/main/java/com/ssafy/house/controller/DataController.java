@@ -271,7 +271,7 @@ public class DataController {
 						dealdto.setDealMonth(getTagValue("월",eElement));
 						dealdto.setDealYear(getTagValue("년",eElement));
 						dealdto.setDeposit(getTagValue("보증금액",eElement));
-						dealdto.setRentMoney(getTagValue("월세금액",eElement));
+						dealdto.setRentMoney(getTagValue("월세금액",eElement).trim());
 						dealdto.setFloor(getTagValue("층",eElement));
 						dealdto.setDong(getTagValue("법정동",eElement));
 						dealdto.setGunguCode(getTagValue("지역코드",eElement));

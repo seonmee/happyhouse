@@ -28,6 +28,7 @@
          <typeAlias type="com.ssafy.house.dto.CategoryDto" alias="CategoryDto"/>
          <typeAlias type="com.ssafy.house.dto.DealDto" alias="DealDto"/>
          <typeAlias type="com.ssafy.house.dto.NoticeDto" alias="NoticeDto"/>
+         <typeAlias type="com.ssafy.house.dto.CommentDto" alias="CommentDto"/>
          
          <typeAlias type="com.ssafy.house.dto.SearchCondition" alias="SearchCondition"/>
          <typeAlias type="com.ssafy.house.dto.SearchCondition2" alias="SearchCondition2"/>
@@ -40,5 +41,6 @@
         <mapper resource="mapper/data.xml"/>
         <mapper resource="mapper/deal.xml"/>
         <mapper resource="mapper/notice.xml"/>
+        <mapper resource="mapper/comment.xml"/>
     </mappers>
 </configuration>

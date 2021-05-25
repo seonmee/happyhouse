@@ -1,7 +1,11 @@
 package com.ssafy.house.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +24,7 @@ import com.ssafy.house.dto.SearchCondition;
 import com.ssafy.house.help.BoolResult;
 import com.ssafy.house.help.NumberResult;
 import com.ssafy.house.service.BoardService;
-import com.ssafy.house.util.PageNavigation2;
+import com.ssafy.house.util.NewsApi;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -158,5 +162,29 @@ public class BoardController {
 //		}
 //		return new ResponseEntity<List<BoardDto>>(board, HttpStatus.OK);
 //	}
+    
+	@ApiOperation(value = "모든 게시판의 정보를 반환한다.", response = String.class)
+	@RequestMapping(value = "/news", method = RequestMethod.GET)
+	public ResponseEntity<String> news() throws Exception {
+		String clientId = "wrkZjByj56cMsCnOdbb_"; //애플리케이션 클라이언트 아이디값"
+        String clientSecret = "JcsPfrSLmy"; //애플리케이션 클라이언트 시크릿값"
+
+        String text = null;
+        try {
+            text = URLEncoder.encode("부동산", "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("검색어 인코딩 실패",e);
+        }
+
+        String apiURL = "https://openapi.naver.com/v1/search/news.json?query=" + text+ "&display=5&start=1&sort=sim";    // json 결과
+        //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
+
+        Map<String, String> requestHeaders = new HashMap<>();
+        requestHeaders.put("X-Naver-Client-Id", clientId);
+        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+        String responseBody = NewsApi.get(apiURL,requestHeaders);
+
+		return new ResponseEntity<String>(responseBody, HttpStatus.OK);
+	}
     
 }

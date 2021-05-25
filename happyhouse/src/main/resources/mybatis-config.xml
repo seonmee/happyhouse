@@ -25,6 +25,7 @@
          <typeAlias type="com.ssafy.house.dto.ApartDto" alias="ApartDto"/>
          <typeAlias type="com.ssafy.house.dto.MemberDto" alias="MemberDto"/>
          <typeAlias type="com.ssafy.house.dto.StoreDto" alias="StoreDto"/>
+         <typeAlias type="com.ssafy.house.dto.CategoryDto" alias="CategoryDto"/>
          <typeAlias type="com.ssafy.house.dto.DealDto" alias="DealDto"/>
          <typeAlias type="com.ssafy.house.dto.NoticeDto" alias="NoticeDto"/>
          

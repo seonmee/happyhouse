@@ -76,7 +76,7 @@ public class CommentController {
 	@RequestMapping(value = "/modComment", method = RequestMethod.PUT)
 	public ResponseEntity<Integer> modComment(@RequestBody CommentDto commentDto) throws Exception{
 		logger.info("5-------------modComment-----------------------------"+new Date());
-		
+		logger.info("5-------------modComment-----------------------------"+commentDto.getContent());
 		int result = commentService.modComment(commentDto);
 		
 		if (result==-1) {
@@ -86,11 +86,11 @@ public class CommentController {
 	}
 	
 	@ApiOperation(value = " 게시글에 해당하는 댓글을 삭제힌다.", response = Integer.class)
-	@RequestMapping(value = "/deleteComment", method = RequestMethod.DELETE)
-	public ResponseEntity<Integer> deleteComment(@RequestBody CommentDto commentDto) throws Exception{
+	@RequestMapping(value = "/deleteComment/{cid}", method = RequestMethod.DELETE)
+	public ResponseEntity<Integer> deleteComment(@PathVariable int cid) throws Exception{
 		logger.info("5-------------deleteComment-----------------------------"+new Date());
 		
-		int result = commentService.deleteComment(commentDto);
+		int result = commentService.deleteComment(cid);
 		
 		if (result==-1) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);

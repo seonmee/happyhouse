@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.ssafy.house.dao.CommentDaoImpl">
 
- <insert id="addBoard" parameterType="CommentDto" >
+ <insert id="addComment" parameterType="CommentDto" >
     INSERT INTO comment(bid, userid, content) 
     VALUES(#{bid},#{userid},#{content});
  </insert>
@@ -15,7 +15,7 @@
 	WHERE cid=#{cid}                
  </update>
  
- <delete id="deleteBoard" parameterType="int">
+ <delete id="deleteComment" parameterType="int">
     DELETE FROM comment 
      WHERE cid=#{cid}    
  </delete>

@@ -49,16 +49,16 @@ public class CommentDaoImpl implements CommentDao {
 	 * */
 	@Override
 	public int modComment(CommentDto commentDto) throws Exception {
-		return sqlSession.insert(namespace+"modComment",commentDto);
+		return sqlSession.update(namespace+"modComment",commentDto);
 	}
 
 
 	/* 댓글 삭제 
-	 * input : CommentDto
+	 * input : int
 	 * output : int
 	 * */
 	@Override
-	public int deleteComment(CommentDto commentDto) throws Exception {
-		return sqlSession.insert(namespace+"deleteComment",commentDto);
+	public int deleteComment(int cid) throws Exception {
+		return sqlSession.insert(namespace+"deleteComment",cid);
 	}
 }

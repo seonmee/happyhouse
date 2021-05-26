@@ -13,5 +13,5 @@ public interface CommentDao {
 
 	int modComment(CommentDto commentDto) throws Exception;
 
-	int deleteComment(CommentDto commentDto) throws Exception;
+	int deleteComment(int cid) throws Exception;
 }

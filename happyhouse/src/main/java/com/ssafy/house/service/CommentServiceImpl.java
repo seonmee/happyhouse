@@ -57,8 +57,8 @@ public class CommentServiceImpl implements CommentService {
 	 * output : int
 	 * */
 	@Override
-	public int deleteComment(CommentDto commentDto) throws Exception {
-		return commentDao.deleteComment(commentDto);
+	public int deleteComment(int cid) throws Exception {
+		return commentDao.deleteComment(cid);
 	}
 
 }

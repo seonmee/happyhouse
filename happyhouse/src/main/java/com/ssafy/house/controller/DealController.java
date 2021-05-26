@@ -10,10 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.house.dto.AmountDto;
 import com.ssafy.house.dto.DealDto;
 import com.ssafy.house.dto.StoreDto;
 import com.ssafy.house.service.DealService;
@@ -185,5 +187,35 @@ public class DealController {
 		return new ResponseEntity<Integer>(tot, HttpStatus.OK);
 	}
 	
-
+	/* 년도별 아파트 매매 가격 추이  */
+	@ApiOperation(value ="년도별 아파트 매매 가격 추이", response = List.class)
+	@RequestMapping(value = {"/aptDealAmountList/{dealYear}/{name}"},method=RequestMethod.GET)
+	public ResponseEntity<List<AmountDto>> aptDealAmountList(@PathVariable String dealYear, @PathVariable String name) throws Exception {
+		logger.info("-------------------aptDealAmountList--------------------"+new Date());
+		DealDto dealDto = new DealDto();
+		dealDto.setDealYear(dealYear);
+		dealDto.setName(name);
+		List<AmountDto> deals = dealService.aptDealAmountList(dealDto);
+		
+		if (deals.isEmpty()) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<AmountDto>>(deals, HttpStatus.OK);
+	}
+	
+	/* 동에 해당하는 아파트 리스트  */
+	@ApiOperation(value ="동에 해당하는 아파트 리스트", response = List.class)
+	@RequestMapping(value = {"/getaptList/{dong}"},method=RequestMethod.GET)
+	public ResponseEntity<List<DealDto>> getaptList(@PathVariable String dong) throws Exception {
+		logger.info("-------------------getaptList--------------------"+new Date());
+		DealDto dealDto = new DealDto();
+		dealDto.setDong(dong);
+		logger.info("-------------------getaptList--------------------"+dong);
+		List<DealDto> deals = dealService.getaptList(dealDto);
+		
+		if (deals.isEmpty()) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<DealDto>>(deals, HttpStatus.OK);
+	}
 }

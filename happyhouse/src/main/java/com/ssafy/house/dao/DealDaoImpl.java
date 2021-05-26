@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ssafy.house.dto.AmountDto;
 import com.ssafy.house.dto.DealDto;
 
 @Repository
@@ -121,6 +122,24 @@ public class DealDaoImpl implements DealDao {
 	@Override
 	public int getTotCntAptDeal(DealDto deal) throws Exception {
 		return sqlSession.selectOne(namespace + "getTotCntAptDeal", deal);
+	}
+	
+	/* 년도별 아파트 매매 가격 추이    
+	 * input : DealDto
+	 * output : AmountDto
+	 * */
+	@Override
+	public List<AmountDto> aptDealAmountList(DealDto deal) throws Exception {
+		return sqlSession.selectList(namespace + "aptDealAmountList",deal);
+	}
+
+	/* 동에 해당하는 아파트 리스트  
+	 * input : DealDto
+	 * output : dealDto
+	 * */
+	@Override
+	public List<DealDto> getaptList(DealDto dealDto) throws Exception {
+		return sqlSession.selectList(namespace +"getaptList" ,dealDto);
 	}
 
 }

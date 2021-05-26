@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.house.dao.DealDao;
+import com.ssafy.house.dto.AmountDto;
 import com.ssafy.house.dto.DealDto;
 
 @Service
@@ -117,6 +118,25 @@ public class DealServiceImpl implements DealService {
 	@Override
 	public int getTotCntAptDeal(DealDto deal) throws Exception {
 		return dealDao.getTotCntAptDeal(deal);
+	}
+
+	
+	/* 년도별 아파트 매매 가격 추이    
+	 * input : DealDto
+	 * output : AmountDto
+	 * */
+	@Override
+	public List<AmountDto> aptDealAmountList(DealDto deal) throws Exception {
+		return dealDao.aptDealAmountList(deal);
+	}
+
+	/* 동에 해당하는 아파트 리스트  
+	 * input : DealDto
+	 * output : dealDto
+	 * */
+	@Override
+	public List<DealDto> getaptList(DealDto dealDto) throws Exception {
+		return dealDao.getaptList(dealDto);
 	}
 	
 

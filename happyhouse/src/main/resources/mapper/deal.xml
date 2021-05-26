@@ -135,5 +135,21 @@
       WHERE gungu_code = #{gunguCode}
         AND dong = #{dong} 
  </select>
+ 
+ <select id = "aptDealAmountList" parameterType = "DealDto" resultType = "AmountDto">
+ SELECT a.deal_month dealMonth, truncate(avg(a.deal_amount),1) avg, max(a.deal_amount) max, min(a.deal_amount) min
+   FROM houseinfo h LEFT JOIN aptdeal a ON h.AptName = a.apt_name
+    AND h.jibun = a.jibun
+  WHERE a.deal_year = #{dealYear}
+    AND a.apt_name=#{name}
+  GROUP BY a.deal_month;
+ </select>
+ 
+ <select id="getaptList" parameterType = "DealDto" resultType = "DealDto">
+SELECT AptName name
+  FROM houseinfo 
+ WHERE dong = #{dong}
+ORDER BY AptName;
+ </select>
 	
 </mapper>

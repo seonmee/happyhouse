@@ -2,6 +2,7 @@ package com.ssafy.house.dao;
 
 import java.util.List;
 
+import com.ssafy.house.dto.AmountDto;
 import com.ssafy.house.dto.DealDto;
 
 public interface DealDao {
@@ -29,6 +30,10 @@ public interface DealDao {
 	List<DealDto> aptDealList(DealDto deal) throws Exception;
 
 	int getTotCntAptDeal(DealDto deal) throws Exception;
+
+	List<AmountDto> aptDealAmountList(DealDto deal) throws Exception;
+
+	List<DealDto> getaptList(DealDto dealDto) throws Exception;
 
 
 }

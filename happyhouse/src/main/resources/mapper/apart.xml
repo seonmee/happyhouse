@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!-- select distinct(dong), round(avg(replace(deal_amount, ',', ''))) avgDeal
+from aptdeal
+where gungu_code = '11110' and deal_year = '2019'
+group by dong
+order by avgDeal desc
+limit 0, 5; -->
 <mapper namespace="com.ssafy.house.dao.ApartMapper">
+
+	<select id = "listAptAvgDesc" parameterType="Map" resultType="AptAvgDto">
+		select distinct(dong), round(avg(replace(deal_amount, ',', ''))) dealAmountAvg
+		from aptdeal
+		where gungu_code = #{gugunCode} and deal_year = #{dealYear}
+		group by dong
+		order by dealAmountAvg desc
+		limit 0, 5
+	</select>
+	
+	<select id = "listAptAvgAsc" parameterType="Map" resultType="AptAvgDto">
+		select distinct(dong), round(avg(replace(deal_amount, ',', ''))) dealAmountAvg
+		from aptdeal
+		where gungu_code = #{gugunCode} and deal_year = #{dealYear}
+		group by dong
+		order by dealAmountAvg asc
+		limit 0, 5
+	</select>
 	
 	<resultMap type="CityDto" id="CityList">
 		<result property="cityCode" column="cityCode"/>

@@ -1,6 +1,7 @@
 package com.ssafy.house.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.house.dao.ApartDao;
 import com.ssafy.house.dto.ApartDto;
+import com.ssafy.house.dto.AptAvgDto;
 import com.ssafy.house.dto.CityDto;
 import com.ssafy.house.dto.SearchCondition2;
 
@@ -20,6 +22,17 @@ public class ApartServiceImpl implements ApartService {
 	
 	@Autowired
 	private ApartDao apartDao;
+	
+	@Override
+	public List<AptAvgDto> listAptAvgDesc(Map map) {
+		return apartDao.listAptAvgDesc(map);
+	}
+
+	@Override
+	public List<AptAvgDto> listAptAvgAsc(Map map) {
+		return apartDao.listAptAvgAsc(map);
+	}
+	
 
 	@Override
 	@Transactional(readOnly=true)

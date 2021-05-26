@@ -1,6 +1,8 @@
 package com.ssafy.house.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.house.dto.ApartDto;
+import com.ssafy.house.dto.AptAvgDto;
 import com.ssafy.house.dto.CityDto;
 import com.ssafy.house.dto.SearchCondition2;
-import com.ssafy.house.dto.StoreDto;
 import com.ssafy.house.service.ApartService;
 
 import io.swagger.annotations.Api;
@@ -33,6 +35,23 @@ public class ApartController {
 	
 	@Autowired
 	private ApartService apartService;
+	
+	@GetMapping(value = "/apart/findAvgDesc/{gugunCode}/{dealYear}")
+	public ResponseEntity<List<AptAvgDto>> findAptAvgDesc(@PathVariable("gugunCode") String gugunCode, @PathVariable("dealYear") String dealYear) {
+		Map paramMap = new HashMap();
+		paramMap.put("gugunCode", gugunCode);
+		paramMap.put("dealYear", dealYear);
+		List<AptAvgDto> list = apartService.listAptAvgDesc(paramMap);
+		return new ResponseEntity<List<AptAvgDto>>(list, HttpStatus.OK);
+	}
+	@GetMapping(value = "/apart/findAvgAsc/{gugunCode}/{dealYear}")
+	public ResponseEntity<List<AptAvgDto>> findAptAvgAsc(@PathVariable("gugunCode") String gugunCode, @PathVariable("dealYear") String dealYear) {
+		Map paramMap = new HashMap();
+		paramMap.put("gugunCode", gugunCode);
+		paramMap.put("dealYear", dealYear);
+		List<AptAvgDto> list = apartService.listAptAvgAsc(paramMap);
+		return new ResponseEntity<List<AptAvgDto>>(list, HttpStatus.OK);
+	}
 	
 	@ApiOperation(value = "시/도 코드, 명을 반환한다.", response = List.class)
 	@GetMapping(value="/apart/sido")
